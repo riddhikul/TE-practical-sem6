@@ -51,6 +51,67 @@ class Graph{
       }   
       cout<<"\n";
     }
+
+    void BFSSearch(int n , int target){
+        vector<int> visit(n+1,0);
+        queue<int> q;
+        vector<int> ans_s;
+        int find=0;
+        for(int i=1;i<=n;i++){
+            if(visit[i]==0){
+                visit[i]=1;
+                q.push(i);
+                recbfs_search(visit,q,ans_s,find,target);
+            }
+             if(find==1)
+        {
+            break;
+        }
+        }
+          if(find==1)
+    {
+        cout<<"\nVertex Found \n";
+        cout<<"\nBFS Traversal for vertex "<< target <<" is : ";
+        for(int i=0;i<ans_s.size();i++)
+        {
+            cout<<ans_s[i]<<" ";
+        }
+        cout<<"\n";
+    }
+    else
+    {
+        cout<<"\nVertex Not Found \n";
+    }
+       
+
+    }
+
+    void recbfs_search(vector<int> &visit ,queue<int> &q ,vector<int>&ans_s,int find,int target ){
+      if(q.empty()){
+        return;
+      }
+      int ele=q.front();
+      q.pop();
+      ans_s.push_back(ele); 
+      if(ele==target){
+        find=1;
+        return;
+      } 
+      vector<int> b = adj[ele];
+      for(int i=0;i<b.size();i++){
+        if(!visit[b[i]]){
+            visit[b[i]]=1;
+
+            q.push(b[i]);
+        }
+        if(find==1){
+            break;
+        }
+      }
+      if(find!=1){
+        recbfs_search(visit,q,ans_s,find,target);
+      }
+    } 
 };
 
 int main() {
