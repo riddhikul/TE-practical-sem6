@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
-class Graph{ public:
+class Graph{ 
+    public:
     int V; //for number of vertices
     vector<vector<int>> adj; //adjacency list
     
