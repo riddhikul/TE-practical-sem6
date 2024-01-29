@@ -120,19 +120,25 @@ public:
           st.push(i);
           recdfs(visit,st,ans);
         }
+    
       }
+      cout << "\nDFS Traversal is : ";
+        for (int i = 0; i < ans.size(); i++) {
+            cout << ans[i] << " ";
+        }
+        cout << "\n";
     }
 
-   void recdfs(vector<int> &visit, stack<int> st,vector<int> &ans){
+   void recdfs(vector<int> &visit, stack<int> &st,vector<int> &ans){
             int top=st.top();
             st.pop();
             vector<int> a=adj[top];
             ans.push_back(top);
             for(int i=0;i<a.size();i++){
               int ele=a[i];
-              if(visit[a[i]]==0){
-                visit[i]=1;
-                cout<<"Visisting "<<a[i]<<" vertex and inserting it into stack\n";
+              if(visit[ele]==0){
+                visit[ele]=1;
+                cout<<"Visiting "<<a[i]<<" vertex and inserting it into stack\n";
                 st.push(a[i]);
                 recdfs(visit,st,ans);
               }
@@ -219,6 +225,10 @@ public:
         }
         cout << "\n";
     }
+    
+    graph.BFS(n);
+
+    graph.DFS(n);
 
     int choice;
     while (true) {
